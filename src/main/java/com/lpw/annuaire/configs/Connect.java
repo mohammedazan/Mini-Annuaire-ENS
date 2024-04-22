@@ -8,6 +8,10 @@ import org.jetbrains.annotations.NotNull;
 import java.sql.*;
 import java.util.ArrayList;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class Connect {
 
     public static Connection connection = null;
@@ -15,27 +19,29 @@ public class Connect {
 
     public static boolean open() {
         try {
+            // Load MySQL JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            System.out.println("Class not found " + e);
-        }
-        try {
-            connection = DriverManager.getConnection(DbUtils.URL);
-            if(connection!=null) {
-                System.out.println("connecting successful");
-
-            }
-            else {
-                System.out.println("connection failde");
-
-            }
-            // connection =
-            // connection = DriverManager.getConnection(DbUtils.URL);
-            return true;
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            System.out.println("MySQL JDBC driver not found: " + e.getMessage());
             return false;
         }
+
+        try {
+            // Establish connection
+            connection = DriverManager
+                    .getConnection("jdbc:mysql://127.0.0.1:3306/mini_annuaire?user=root&password=12345");
+            if (connection != null) {
+                System.out.println("Connection successful");
+                return true;
+            } else {
+                System.out.println("Connection failed");
+                return false;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Connection error: " + ex.getMessage());
+            return false;
+        }
+        
     }
 
     @org.jetbrains.annotations.Nullable

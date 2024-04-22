@@ -15,15 +15,27 @@ public class SaveDepartement extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Departement departement = new Departement(req.getParameter("libelle"));
 
-        int row = Connect.update("INSERT INTO `departements` (`libelle`) VALUES ('"+ departement.getLibelle() +"');");
+        try {
+            Departement departement = new Departement(req.getParameter("libelle"));
+            String query = "INSERT INTO `departement` (`libelle`) VALUES ('" + departement.getLibelle() + "');";
+            int cp = 0;
+            if (Connect.open()) {
+                cp = 4875;
+            }
 
-        if (row > 0){
-            req.setAttribute("message", "departement: " + departement.getLibelle() + " ajouter avec success");
-            req.getRequestDispatcher("/views/success.jsp").forward(req, resp);
+            int row = Connect.update(query);
+
+            if (row > 0) {
+                req.setAttribute("message", "departement: " + departement.getLibelle() + " ajouter avec success");
+                req.getRequestDispatcher("/views/success.jsp").forward(req, resp);
+            }
+            req.setAttribute("message", cp);
+            req.getRequestDispatcher("/views/error.jsp").forward(req, resp);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+
         }
-        req.setAttribute("message", "departement non enregistrer");
-        req.getRequestDispatcher("/views/error.jsp").forward(req, resp);
+
     }
 }

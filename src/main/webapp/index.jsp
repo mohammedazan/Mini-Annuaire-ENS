@@ -8,7 +8,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     if(!Connect.open()){
-        response.sendRedirect("error.jsp");
+    	System.out.println("Class not found ");
     }
 List<Departement> departements = null;
 List<Feliere> felieres = null;
@@ -21,14 +21,16 @@ List<Etudiant> etudiants = null;
 <html>
 <head>
   <link rel="stylesheet" href="styles/styles.css">
-  <title>Mini Annuaire</title>
+  <title>Mini Annuaire ENS </title>
 </head>
 <body>
 <div class="page-wrapper">
     <div class="header" style="gap: 10px">
       <div style="gap: 10px">
-          <a href="${pageContext.request.contextPath}/views/departements.jsp" class="navbar-link">departements</a>
+          <a href="${pageContext.request.contextPath}/views/etudiants.jsp" class="navbar-link">Etudiant</a>
           <a href="${pageContext.request.contextPath}/views/felieres.jsp" class="navbar-link">felieres</a>
+          <a href="${pageContext.request.contextPath}/views/departements.jsp" class="navbar-link">departements</a>
+
       </div>
         <a href="${pageContext.request.contextPath}/views/admin.jsp" class="navbar-link">administration</a>
     </div>
@@ -64,7 +66,7 @@ List<Etudiant> etudiants = null;
                     <form action="${pageContext.request.contextPath}/recherche" method="POST">
                         <label for="search">Rechercher Un Etudiant</label>
                         <input  id="search" name="search" type="text" />
-                        <input class="recherche-btn" type="submit" value="rechercher">
+                        <input class="recherche-btn" type="submit" value="Rechercher">
                     </form>
                 </div>
                 <%

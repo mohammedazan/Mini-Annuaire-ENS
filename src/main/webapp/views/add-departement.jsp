@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.lpw.annuaire.modals.Departement" %>
+<%@ page import="com.lpw.annuaire.configs.Connect" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -24,7 +27,7 @@
 			>
 			<form
 					method="post"
-				action="/mini_annuaire_web_war_exploded/save_departement"
+				action="${pageContext.request.contextPath}/save_departement"
 				class="form">
 				<div class="field">
 					<label for="departement">Departement Libelle: </label>

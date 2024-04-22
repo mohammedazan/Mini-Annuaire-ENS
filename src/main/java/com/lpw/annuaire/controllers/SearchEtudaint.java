@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @WebServlet(name = "recherche", value = "/recherche")
+
 public class SearchEtudaint extends HttpServlet {
 
     @Override

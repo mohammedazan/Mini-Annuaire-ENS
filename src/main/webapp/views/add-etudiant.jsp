@@ -71,8 +71,9 @@
 						<select
 							name="feliere"
 							id="feliere">
-							<% ArrayList<Feliere> felieres = Connect.toFelieres(Connect.select("SELECT F.id, F.libelle, D.libelle as 'departement', D.id as 'departementId' FROM feliere F INNER JOIN departements D on D.id = F.departement;"));
-
+							<!-- <option value="1">ddd</option> -->
+							<% ArrayList<Feliere> felieres = Connect.toFelieres(Connect.select("SELECT F.id, F.libelle, D.libelle as 'departement', D.id as 'departementId' FROM feliere F INNER JOIN departement D on D.id = F.departement;"));
+								
 								for (Feliere f: felieres) {
 									%>
 										<option value="<%=f.getId()%>"><%=f.getLibelle()%></option>

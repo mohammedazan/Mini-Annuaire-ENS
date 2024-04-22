@@ -25,6 +25,7 @@ public class DeleteDepartement extends HttpServlet {
         req.setAttribute("message", "departement non suppremer");
         req.getRequestDispatcher("/views/error.jsp").forward(req, resp);
     }
+    
 }
 
 

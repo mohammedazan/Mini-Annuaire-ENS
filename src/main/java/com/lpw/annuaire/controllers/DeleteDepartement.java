@@ -16,7 +16,7 @@ public class DeleteDepartement extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int id = Integer.parseInt(req.getParameter("id"));
-        int rows = Connect.update("DELETE FROM departements WHERE id = " +  id   + ";");
+        int rows = Connect.update("DELETE FROM departement WHERE id = " +  id   + ";");
 
         if (rows > 0){
             req.setAttribute("message", "departement " + id + " suppremer avec success");

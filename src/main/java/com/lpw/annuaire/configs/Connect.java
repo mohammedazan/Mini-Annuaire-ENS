@@ -8,10 +8,6 @@ import org.jetbrains.annotations.NotNull;
 import java.sql.*;
 import java.util.ArrayList;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 public class Connect {
 
     public static Connection connection = null;
@@ -64,13 +60,20 @@ public class Connect {
                 statement = connection.createStatement();
                 return statement.executeUpdate(sql);
             } catch (Exception ex) {
-                // System.out.println(ex.getMessage());
-                System.out.println("test");
+                System.out.println(ex.getMessage());
                 return 0;
             }
         }
         return 0;
+        
     }
+
+    /**
+     * تنفيذ استعلام SQL محدد واسترجاع النتائج كـ ResultSet.
+     * 
+     * @param sql الاستعلام SQL الذي يجب تنفيذه
+     * @return ResultSet الذي يحتوي على النتائج إذا تم تنفيذ الاستعلام بنجاح، وإلا فـ null.
+     */
 
     public static ResultSet select(String sql, String filter, String field) {
         if (open()) {
@@ -84,6 +87,14 @@ public class Connect {
         }
         return null;
     }
+    
+        /**
+     * تحويل نتائج استعلام SQL (ResultSet) إلى قائمة من كائنات Departement.
+     * 
+     * @param rs ResultSet الذي يحتوي على النتائج من استعلام SQL
+     * @return ArrayList<Departement> قائمة تحتوي على كائنات Departement
+     *         المحولة من ResultSet
+     */
 
     @NotNull
     public static ArrayList<Departement> toDepartements(ResultSet rs) {

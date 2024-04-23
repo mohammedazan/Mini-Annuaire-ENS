@@ -42,7 +42,7 @@
 					<select
 							name="departement"
 							id="departement">
-						<% ArrayList<Departement> departements = Connect.toDepartements(Connect.select("Select * from departements;"));
+						<% ArrayList<Departement> departements = Connect.toDepartements(Connect.select("Select * from departement;"));
 
 							for (Departement d: departements) {
 						%>

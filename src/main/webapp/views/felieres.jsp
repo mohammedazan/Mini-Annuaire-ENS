@@ -26,13 +26,14 @@
 			felieres = (ArrayList<Feliere>) request.getAttribute("felieres");
 		}else{
 			String departement = request.getParameter("departement");
-			String query = departement == null ? "SELECT F.id, F.libelle, D.libelle as 'departement', D.id as 'departementId' FROM feliere F INNER JOIN departements D on D.id = F.departement;" : "SELECT F.id, F.libelle, D.libelle as 'departement', D.id as 'departementId' FROM feliere F INNER JOIN departements D on D.id = F.departement where F.departement = " + departement; ;
+			String query = departement == null ? "SELECT F.id, F.libelle, D.libelle as 'departement', D.id as 'departementId' FROM feliere F INNER JOIN departements D on D.id = F.departement;" 
+			: "SELECT F.id, F.libelle, D.libelle as 'departement', D.id as 'departementId' FROM feliere F INNER JOIN departements D on D.id = F.departement where F.departement = " + departement; ;
 			felieres = Connect.toFelieres(Connect.select(query));
 		}
 
 	%>
 		<div class="container">
-			<h1 class="heading">List des felieres</h1>
+			<h1 class="heading">List des Felieres</h1>
 			<div class="searchbar" style="padding: 40px">
 				<form action="${pageContext.request.contextPath}/recherche_feliere" method="POST">
 					<label for="search">Rechercher un feliere</label>

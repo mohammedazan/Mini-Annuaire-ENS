@@ -22,7 +22,7 @@
 			<h1 class="heading">Ajouter un departement</h1>
 			<a
 				class="consult-button button"
-				href="/departements"
+				href="${pageContext.request.contextPath}/views/departements.jsp" 
 				>affichie departements</a
 			>
 			<form

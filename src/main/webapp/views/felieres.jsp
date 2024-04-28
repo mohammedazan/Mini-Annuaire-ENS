@@ -19,6 +19,8 @@
 		<a href="${pageContext.request.contextPath}/" class="navbar-link">home</a></li>
 		<a href="${pageContext.request.contextPath}/views/admin.jsp" class="navbar-link">administration</a></li>
 	</div>
+				<!--String query = departement == null ? "SELECT F.id, F.libelle, D.libelle as 'departement', D.id as 'departementId' FROM feliere F INNER JOIN departements D on D.id = F.departement;" 
+			: "SELECT F.id, F.libelle, D.libelle as 'departement', D.id as 'departementId' FROM feliere F INNER JOIN departements D on D.id = F.departement where F.departement = " + departement; ;-->
 	<%
 		ArrayList<Feliere> felieres;
 
@@ -26,12 +28,8 @@
 			felieres = (ArrayList<Feliere>) request.getAttribute("felieres");
 		}else{
 			String departement = request.getParameter("departement");
-			//String query = departement == null ? "SELECT F.id, F.libelle, D.libelle as 'departement', D.id as 'departementId' FROM feliere F INNER JOIN departements D on D.id = F.departement;" 
-			//: "SELECT F.id, F.libelle, D.libelle as 'departement', D.id as 'departementId' FROM feliere F INNER JOIN departements D on D.id = F.departement where F.departement = " + departement; ;
-			String query = departement == null ?"SELECT F.id AS 'idfeliere', F.libelle AS 'feliere', D.libelle AS 'departement'
-			FROM feliere F
-			INNER JOIN departement D ON F.departement = D.id;
-			" 
+
+			String query = departement == null ?"SELECT F.id, F.libelle, D.libelle AS 'departement', D.id AS 'departementId' FROM feliere F INNER JOIN departement D ON D.id = F.departement ;" : "SELECT F.id, F.libelle, D.libelle AS 'departement', D.id AS 'departementId' FROM feliere F INNER JOIN departement D ON D.id = F.departement WHERE D.libelle = " + departement; ;
 			felieres = Connect.toFelieres(Connect.select(query));
 		}
 

@@ -1,5 +1,4 @@
 package com.lpw.annuaire.controllers;
-
 import com.lpw.annuaire.configs.Connect;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

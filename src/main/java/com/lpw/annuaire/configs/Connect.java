@@ -25,7 +25,7 @@ public class Connect {
         try {
             // Establish connection
             connection = DriverManager
-                    .getConnection("jdbc:mysql://127.0.0.1:3306/mini_annuaire?user=root&password=12345");
+                    .getConnection("jdbc:mysql://127.0.0.1:3306/test_mini_innuaire?user=root&password=12345");
             if (connection != null) {
                 System.out.println("Connection successful");
                 return true;

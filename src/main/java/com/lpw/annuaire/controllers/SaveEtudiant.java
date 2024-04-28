@@ -1,6 +1,7 @@
 package com.lpw.annuaire.controllers;
 
 import com.lpw.annuaire.configs.Connect;
+import com.lpw.annuaire.modals.Departement;
 import com.lpw.annuaire.modals.Etudiant;
 import com.lpw.annuaire.modals.Feliere;
 import jakarta.servlet.ServletException;
@@ -19,13 +20,19 @@ public class SaveEtudiant extends HttpServlet {
                 req.getParameter("nom"),
                 req.getParameter("prenom"),
                 req.getParameter("tele"),
-                new Feliere(Integer.parseInt(req.getParameter("feliere")))
+                new Feliere(Integer.parseInt(req.getParameter("feliere"))),
+                new Departement(Integer.parseInt(req.getParameter("departement")))
+
         );
-        String query = "INSERT INTO `etudiant` (`CNE`, `nom`, `prenom`, `telephone`, `feliere`) VALUES ('"+ etudiant.getCNE() +"', '"+ etudiant.getNom() +"', '"+ etudiant.getPrenom() +"', '"+ etudiant.getTelephone() +"', '" + etudiant.getFeliere().getId() + "');";
+        String query = "INSERT INTO `etudiant` (`CNE`, `nom`, `prenom`, `feliere`, `departement`,`telephone`) VALUES ('"
+                + etudiant.getCNE() + "',  '" + etudiant.getNom() + "', '" + etudiant.getPrenom() + "',  '"
+                + etudiant.getFeliere().getId() + "', '" + etudiant.getDepartement().getId() + "',  '"
+                + etudiant.getTelephone() + "');";
         int row = Connect.update(query);
 
-        if (row > 0){
-            req.setAttribute("message", "etudiant: " + etudiant.getNom() + " " + etudiant.getPrenom() + " ajouter avec success");
+        if (row > 0) {
+            req.setAttribute("message",
+                    "etudiant: " + etudiant.getNom() + " " + etudiant.getPrenom() + " ajouter avec success");
             req.getRequestDispatcher("/views/success.jsp").forward(req, resp);
         }
         req.setAttribute("message", "etudiant non enregistrer");

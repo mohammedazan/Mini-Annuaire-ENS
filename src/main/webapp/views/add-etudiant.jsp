@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.lpw.annuaire.modals.Feliere" %>
+<%@ page import="com.lpw.annuaire.modals.Departement" %>
 <%@ page import="com.lpw.annuaire.configs.Connect" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,11 +83,29 @@
 							%>
 						</select>
 					</div>
+					<div class="field">
+						<label for="departement">Departement: </label>
+						<select
+								name="departement"
+								id="departement">
+							<% ArrayList<Departement> departements = Connect.toDepartements(Connect.select("Select * from departement;"));
+	
+								for (Departement d: departements) {
+							%>
+								<option value="<%=d.getId()%>"><%=d.getLibelle()%></option>
+							<%
+								}
+							%>
+						</select>
+					</div>
+
+				</div>
+				<div  class="row">
 					<input
-						style="margin-top: 20px"
-						type="submit"
-						value="enregistrer"
-						class="button" />
+					style="margin-top: 20px"
+					type="submit"
+					value="enregistrer"
+					class="button" />
 				</div>
 			</form>
 		</div>

@@ -3,7 +3,6 @@ package com.lpw.annuaire.modals;
 public class Feliere {
     private int id;
     private String libelle;
-
     private Departement departement;
 
     public Feliere(int id, String libelle) {

@@ -37,7 +37,7 @@ public class Connect {
             System.out.println("Connection error: " + ex.getMessage());
             return false;
         }
-        
+
     }
 
     @org.jetbrains.annotations.Nullable
@@ -65,14 +65,15 @@ public class Connect {
             }
         }
         return 0;
-        
+
     }
 
     /**
      * تنفيذ استعلام SQL محدد واسترجاع النتائج كـ ResultSet.
      * 
      * @param sql الاستعلام SQL الذي يجب تنفيذه
-     * @return ResultSet الذي يحتوي على النتائج إذا تم تنفيذ الاستعلام بنجاح، وإلا فـ null.
+     * @return ResultSet الذي يحتوي على النتائج إذا تم تنفيذ الاستعلام بنجاح، وإلا
+     *         فـ null.
      */
 
     public static ResultSet select(String sql, String filter, String field) {
@@ -87,8 +88,8 @@ public class Connect {
         }
         return null;
     }
-    
-        /**
+
+    /**
      * تحويل نتائج استعلام SQL (ResultSet) إلى قائمة من كائنات Departement.
      * 
      * @param rs ResultSet الذي يحتوي على النتائج من استعلام SQL
@@ -140,8 +141,8 @@ public class Connect {
                                 rs.getString("nom"),
                                 rs.getString("prenom"),
                                 rs.getString("telephone"),
-                                new Feliere(rs.getInt("feliereId"), rs.getString("feliere")),
-                                new Departement(rs.getInt("departementId"), rs.getString("departement"))));
+                                new Feliere(rs.getInt("id"), rs.getString("libelle")),
+                                new Departement(rs.getInt("id"), rs.getString("libelle"))));
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

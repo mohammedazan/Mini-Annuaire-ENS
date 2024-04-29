@@ -141,8 +141,8 @@ public class Connect {
                                 rs.getString("nom"),
                                 rs.getString("prenom"),
                                 rs.getString("telephone"),
-                                new Feliere(rs.getInt("id"), rs.getString("libelle")),
-                                new Departement(rs.getInt("id"), rs.getString("libelle"))));
+                                new Feliere(rs.getInt("feliere")),
+                                new Departement(rs.getInt("departement"))));
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

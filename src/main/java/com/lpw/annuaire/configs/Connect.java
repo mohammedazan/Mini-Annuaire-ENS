@@ -81,6 +81,7 @@ public class Connect {
             try {
                 statement = connection.prepareStatement(sql + " where " + field + " like %" + filter + "%");
                 return statement.executeQuery(sql + " where " + field + " like %" + filter + "%");
+                // statement.executeQuery(sql + " where " + field + " like %" + filter + "%");
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
                 return null;
@@ -141,13 +142,12 @@ public class Connect {
                                 rs.getString("nom"),
                                 rs.getString("prenom"),
                                 rs.getString("telephone"),
-                                new Feliere(rs.getInt("feliere")),
-                                new Departement(rs.getInt("departement"))));
+                                new Feliere(rs.getString("feliere")),
+                                new Departement(rs.getString("departement"))));
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
         return etudiants;
     }
 

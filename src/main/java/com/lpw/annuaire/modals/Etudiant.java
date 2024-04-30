@@ -19,6 +19,14 @@ public class Etudiant {
         
     }
 
+	public Etudiant(String CNE, String nom, String prenom, String telephone, Feliere feliere) {
+        this.CNE = CNE;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+        this.feliere = feliere;
+    }
+
 	public String getCNE() {
 		return CNE;
 	}

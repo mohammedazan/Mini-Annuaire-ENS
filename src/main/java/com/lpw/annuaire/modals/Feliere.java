@@ -9,6 +9,9 @@ public class Feliere {
         this.id = id;
         this.libelle = libelle;
     }
+    public Feliere(String libelle) {
+        this.libelle = libelle;
+    }
 
     public Feliere(String libelle, Departement departement) {
         this.libelle = libelle;

@@ -38,8 +38,7 @@ public class SearchDepartement extends HttpServlet {
             req.setAttribute("message", "Query non valid, Veuillez specifie le libelle de departement.");
             req.getRequestDispatcher("/views/error.jsp").forward(req, resp);
         }
-        ArrayList<Departement> departements = Connect
-                .toDepartements(Connect.select("SELECT * FROM departement WHERE REPLACE(libelle, ' ', '') LIKE '%"
+        ArrayList<Departement> departements = Connect.toDepartements(Connect.select("SELECT * FROM departement WHERE REPLACE(libelle, ' ', '') LIKE '%"
                         + query.replaceAll("\\s+", "") + "%';"));
         if (departements != null) {
 

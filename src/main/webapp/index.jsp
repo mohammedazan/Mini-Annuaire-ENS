@@ -14,7 +14,7 @@ List<Departement> departements = null;
 List<Feliere> felieres = null;
 List<Etudiant> etudiants = null;
 
-    departements = Connect.toDepartements(Connect.select("SELECT * FROM departements"));
+    departements = Connect.toDepartements(Connect.select("SELECT * FROM departement"));
 %>
 
 <!DOCTYPE html>
@@ -49,7 +49,7 @@ List<Etudiant> etudiants = null;
                 <%
                     String departementId = request.getParameter("departement");
                     if(departementId != null){
-                        felieres = Connect.toFelieres(Connect.select("SELECT F.id, F.libelle, D.id as 'departementId', D.libelle as 'departement' FROM feliere F INNER JOIN departements D on D.id = F.departement WHERE F.departement = " + departementId));
+                        felieres = Connect.toFelieres(Connect.select("SELECT F.id, F.libelle, D.id as 'departementId', D.libelle as 'departement' FROM feliere F INNER JOIN departement D on D.id = F.departement WHERE F.departement = " + departementId));
                         for (Feliere feliere: felieres) {
                 %>
                 <div class="feliere-item <%= (request.getParameter("feliere") != null) && (request.getParameter("feliere").equals(String.valueOf(feliere.getId()))) ? "feliere-active" : ""  %>">

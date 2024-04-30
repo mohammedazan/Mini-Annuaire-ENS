@@ -27,17 +27,6 @@
     </form>
   </div>
   <% ArrayList<Etudiant> etudiants = (ArrayList<Etudiant>) request.getAttribute("etudiants"); %>
-    <%
-
-    ArrayList<Etudiant> etudiants ;
-
-    if (request.getAttribute("etudiants") != null){
-      etudiants = (ArrayList<Etudiant>) request.getAttribute("etudiants");
-    }else{
-      etudiants = Connect.toEtudiants(Connect.select("SELECT * FROM etudiant"));
-    }
-
-	%>
   <div class="container">
     <h1 class="heading">List des etudiants</h1>
     <table>

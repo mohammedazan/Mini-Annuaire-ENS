@@ -13,8 +13,8 @@
 	<body>
 
 			<div class="header" style="gap: 10px">
-				<a href="${pageContext.request.contextPath}/" class="navbar-link">home</a>
-				<a href="${pageContext.request.contextPath}/views/admin.jsp" class="navbar-link">administration</a>
+				<a href="${pageContext.request.contextPath}/" class="navbar-link">Home</a>
+				<a href="${pageContext.request.contextPath}/views/admin.jsp" class="navbar-link">Administration</a>
 			</div>
 
 			<%
@@ -40,7 +40,6 @@
 					<thead>
 					<th>Id</th>
 					<th>Departement</th>
-					<th>#</th>
 					<th></th>
 					</thead>
 					<tbody>               
@@ -50,13 +49,6 @@
 					<tr>
 						<td><%=departement.getId()%></td>
 						<td><%=departement.getLibelle()%></td>
-						<td>
-							<a
-									href="${pageContext.request.contextPath}/?departement=<%=departement.getId()%>"
-									class="link"
-							>Affichier Felieres</a
-							>
-						</td>
 						<td>
 							<a
 									href="${pageContext.request.contextPath}/delete_departement?id=<%=departement.getId()%>"

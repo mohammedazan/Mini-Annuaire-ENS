@@ -8,19 +8,19 @@
   <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0" />
-  <title>Add departement | mini annuaire</title>
-  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/styles.css">
+  <title>Add Departement | Mini Annuaire</title>
 </head>
 <body>
-<div class="header" style="gap: 10px">
-  <a href="${pageContext.request.contextPath}/" class="navbar-link">home</a>
-  <a href="${pageContext.request.contextPath}/views/admin.jsp" class="navbar-link">administration</a>
-</div>
+  <div class="header" style="gap: 10px">
+    <a href="${pageContext.request.contextPath}/" class="navbar-link">Home</a></li>
+    <a href="${pageContext.request.contextPath}/views/admin.jsp" class="navbar-link">Administration</a></li>
+  </div>
 <div class="container">
   <h1 class="congrats" style="color: #f61616">${message}</h1>
   <a
           href="${pageContext.request.contextPath}/"
-          class="link"
+          class="navbar-link"
  >Retourne a la page d'acceuill</a
   >
 </div>

@@ -11,19 +11,19 @@
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1.0" />
-		<title>Add feliere | mini annuaire</title>
+		<title>Add feliere | Mini Annuaire</title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/styles/styles.css">
 	</head>
 	<body>
 	<div class="header" style="gap: 10px">
-		<a href="${pageContext.request.contextPath}/views/admin.jsp" class="navbar-link">administration</a></li>
-	</div>
+		<a href="${pageContext.request.contextPath}/views/admin.jsp" class="navbar-link">Administration</a></li>
+	</div>S
 		<div class="container">
-			<h1 class="heading">Ajouter un feliere</h1>
+			<h1 class="heading">Ajouter Un Feliere</h1>
             <a
 				class="button consult-button"
 				href="${pageContext.request.contextPath}/views/felieres.jsp"
-				>afficher felieres</a
+				>Afficher Felieres</a
 			>
 			<form
 					method="post"

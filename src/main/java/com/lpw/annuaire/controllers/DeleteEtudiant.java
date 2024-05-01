@@ -16,6 +16,7 @@ public class DeleteEtudiant extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int cne = Integer.parseInt(req.getParameter("cne"));
+        System.out.println("this CNE :"+ cne);
         int rows = Connect.update("DELETE FROM etudiant WHERE CNE = '" +  cne   + "';");
 
         if (rows > 0){

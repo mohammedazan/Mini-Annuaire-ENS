@@ -106,5 +106,31 @@ List<Etudiant> etudiants = null;
         </div>
     </div>
 </div>
+<!--
+        <header class="cd-main-header js-cd-main-header">
+        <div class="cd-logo-wrapper">
+             <a href="#0" class="cd-logo"><img src="styles/img/cd-logo.svg" alt="Logo"></a>
+        </div>
+              <button class="reset cd-nav-trigger js-cd-nav-trigger" aria-label="Toggle menu"><span></span></button>
+        <ul class="cd-nav__list js-cd-nav__list">
+            <li class="cd-nav__item"><a href="${pageContext.request.contextPath}/views/etudiants.jsp" class="navbar-link">Etudiant</a></li>
+            <li class="cd-nav__item"><a href="${pageContext.request.contextPath}/views/felieres.jsp" class="navbar-link">Felieres</a></li>
+            <li class="cd-nav__item"><a href="${pageContext.request.contextPath}/views/departements.jsp" class="navbar-link">Departements</a></li>
+
+            <li class="cd-nav__item cd-nav__item--has-children cd-nav__item--account js-cd-item--has-children">
+              <a href="#0">
+                <img src="styles/img/cd-avatar.svg" alt="avatar">
+                <span><a href="${pageContext.request.contextPath}/views/admin.jsp" class="navbar-link">Administration</a></span>
+              </a>
+          
+              <ul class="cd-nav__sub-list">
+                <li class="cd-nav__sub-item"><a style="min-width: fit-content" href="${pageContext.request.contextPath}/views/add-etudiant.jsp" class="button">Ajouter Etudiant</a></li>
+                <li class="cd-nav__sub-item"><a style="min-width: fit-content" href="${pageContext.request.contextPath}/views/add-departement.jsp" class="button">Ajouter Departement</a></li>
+                <li class="cd-nav__sub-item"><a style="min-width: fit-content" href="${pageContext.request.contextPath}/views/add-feliere.jsp" class="button">Ajouter Feliere</a></li>
+              </ul>
+            </li>
+        </ul>
+    </header>    
+-->
 </body>
 </html>

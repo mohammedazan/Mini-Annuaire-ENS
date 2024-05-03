@@ -23,7 +23,7 @@ a{
 .sidebar{
   width: 300px;
   height: 100vh;
-  background-color: #4459E8;
+  background-color: #2125f8;
   color: #c7d4fc;
 }
 
@@ -246,4 +246,3 @@ select {
 .navbar-link:hover{
     text-decoration: underline;
 }
-

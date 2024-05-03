@@ -20,47 +20,91 @@ List<Etudiant> etudiants = null;
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="styles/styles.css">
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <link rel="stylesheet" href="assets/css/style.css">
   <title>Mini Annuaire ENS </title>
 </head>
 <body>
 <div class="page-wrapper">
-    <div class="header" style="gap: 10px">
-      <div style="gap: 10px">
-          <a href="${pageContext.request.contextPath}/views/etudiants.jsp" class="navbar-link">Etudiant</a>
-          <a href="${pageContext.request.contextPath}/views/felieres.jsp" class="navbar-link">Felieres</a>
-          <a href="${pageContext.request.contextPath}/views/departements.jsp" class="navbar-link">Departements</a>
+    <header class="cd-main-header js-cd-main-header">
+        <div class="cd-logo-wrapper">
+            <a href="#0" class="cd-logo"><img src="assets/img/cd-logo.svg" alt="Logo"></a>
+        </div>
+              <button class="reset cd-nav-trigger js-cd-nav-trigger" aria-label="Toggle menu"><span></span></button>
+        <ul class="cd-nav__list js-cd-nav__list">
+            <li class="cd-nav__item"><a href="${pageContext.request.contextPath}/views/etudiants.jsp" class="navbar-link">Etudiant</a></li>
+            <li class="cd-nav__item"><a href="${pageContext.request.contextPath}/views/felieres.jsp" class="navbar-link">Felieres</a></li>
+            <li class="cd-nav__item"><a href="${pageContext.request.contextPath}/views/departements.jsp" class="navbar-link">Departements</a></li>
 
-      </div>
-        <a href="${pageContext.request.contextPath}/views/admin.jsp" class="navbar-link">Administration</a>
-    </div>
+            <li class="cd-nav__item cd-nav__item--has-children cd-nav__item--account js-cd-item--has-children">
+              <a href="#0">
+                <img src="assets/img/cd-avatar.svg" alt="avatar">
+                <span><a href="${pageContext.request.contextPath}/views/admin.jsp" class="navbar-link">Administration</a></span>
+              </a>
+          
+              <ul class="cd-nav__sub-list">
+                <li class="cd-nav__sub-item"><a style="min-width: fit-content" href="${pageContext.request.contextPath}/views/add-etudiant.jsp" class="button">Ajouter Etudiant</a></li>
+                <li class="cd-nav__sub-item"><a style="min-width: fit-content" href="${pageContext.request.contextPath}/views/add-departement.jsp" class="button">Ajouter Departement</a></li>
+                <li class="cd-nav__sub-item"><a style="min-width: fit-content" href="${pageContext.request.contextPath}/views/add-feliere.jsp" class="button">Ajouter Feliere</a></li>
+              </ul>
+            </li>
+        </ul>
+    </header>
+    <main class="cd-main-content">
+        <nav class="cd-side-nav js-cd-side-nav">
+          <ul class="cd-side__list js-cd-side__list">
+            <li class="cd-side__label"><span>Main</span></li>
+          <ul class="cd-side__list js-cd-side__list">
+            <li class="cd-side__item cd-side__item--has-children cd-side__item--bookmarks js-cd-item--has-children">
+                <%
+                for(Departement departement : departements){
+               %>
+               <div class="departement-item <%= (request.getParameter("departement") != null) && (request.getParameter("departement").equals(String.valueOf(departement.getId()))) ? "departement-active" : ""  %>">
+                <a class="" href="${pageContext.request.contextPath}?departement=<%=departement.getId()%>"><%=departement.getLibelle()%></a>
+                <ul class="cd-side__sub-list">
+                    <li class="cd-side__sub-item">
+                                <%
+                                String departementId = request.getParameter("departement");
+                                if(departementId != null){
+                                    felieres = Connect.toFelieres(Connect.select("SELECT F.id, F.libelle, D.id as 'departementId', D.libelle as 'departement' FROM feliere F INNER JOIN departement D on D.id = F.departement WHERE F.departement = " + departementId));
+                                    for (Feliere feliere: felieres) {
+                            %>
+                            <div class="feliere-item <%= (request.getParameter("feliere") != null) && (request.getParameter("feliere").equals(String.valueOf(feliere.getId()))) ? "feliere-active" : ""  %>">
+                                <a class="" href="${pageContext.request.contextPath}?departement=<%=departementId%>&feliere=<%=feliere.getId()%>"><%=feliere.getLibelle()%></a>
+                            </div>
+                            <%
+                                    }
+                                }
+                            %>
+                    </li>
+                  </ul>
+               </div>
+               <% } %> 
+            </li>
+        
+          </ul>
+          <ul class="cd-side__list js-cd-side__list">
+            <li class="cd-side__label"><span>Action</span></li>
+            <li class="cd-side__btn"><button class="reset" href="#0">+ Button</button></li>
+          </ul>
+        </nav>
+      
+        <div class="cd-content-wrapper">
+          <div class="text-component text-center">
+            <h1>Responsive Sidebar Navigation</h1>
+            <p>👈<a href="https://codyhouse.co/gem/responsive-sidebar-navigation">Article &amp; Download</a></p>
+          </div>
+        </div> <!-- .content-wrapper -->
+      </main> 
+    
+    
+
+
+
+
+
     <div class="">
         <div class="content">
-            <div class="sidebar">
-                <%
-                    for(Departement departement : departements){
-                %>
-                <div class="departement-item <%= (request.getParameter("departement") != null) && (request.getParameter("departement").equals(String.valueOf(departement.getId()))) ? "departement-active" : ""  %>">
-                    <a class="" href="${pageContext.request.contextPath}?departement=<%=departement.getId()%>"><%=departement.getLibelle()%></a>
-                </div>
-                <% } %>
-            </div>
-            <div class="feliere-list">
-                <%
-                    String departementId = request.getParameter("departement");
-                    if(departementId != null){
-                        felieres = Connect.toFelieres(Connect.select("SELECT F.id, F.libelle, D.id as 'departementId', D.libelle as 'departement' FROM feliere F INNER JOIN departement D on D.id = F.departement WHERE F.departement = " + departementId));
-                        for (Feliere feliere: felieres) {
-                %>
-                <div class="feliere-item <%= (request.getParameter("feliere") != null) && (request.getParameter("feliere").equals(String.valueOf(feliere.getId()))) ? "feliere-active" : ""  %>">
-                    <a class="px-[32] py-[7px] rounded-[16px] bg-main" href="${pageContext.request.contextPath}?departement=<%=departementId%>&feliere=<%=feliere.getId()%>"><%=feliere.getLibelle()%></a>
-                </div>
-                <%
-                        }
-                    }
-                %>
-            </div>
-
             <div class="students-section">
                 <div class="searchbar">
                     <form action="${pageContext.request.contextPath}/recherche" method="POST">
@@ -132,5 +176,8 @@ List<Etudiant> etudiants = null;
         </ul>
     </header>    
 -->
+<script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
+<script src="assets/js/menu-aim.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+             <div class="sidebar">
+                <%
+                    for(Departement departement : departements){
+                %>
+                <div class="departement-item <%= (request.getParameter("departement") != null) && (request.getParameter("departement").equals(String.valueOf(departement.getId()))) ? "departement-active" : ""  %>">
+                    <a class="" href="${pageContext.request.contextPath}?departement=<%=departement.getId()%>"><%=departement.getLibelle()%></a>
+                </div>
+                <% } %>
+            </div>
+            <div class="feliere-list">
+                <%
+                    String departementId = request.getParameter("departement");
+                    if(departementId != null){
+                        felieres = Connect.toFelieres(Connect.select("SELECT F.id, F.libelle, D.id as 'departementId', D.libelle as 'departement' FROM feliere F INNER JOIN departement D on D.id = F.departement WHERE F.departement = " + departementId));
+                        for (Feliere feliere: felieres) {
+                %>
+                <div class="feliere-item <%= (request.getParameter("feliere") != null) && (request.getParameter("feliere").equals(String.valueOf(feliere.getId()))) ? "feliere-active" : ""  %>">
+                    <a class="px-[32] py-[7px] rounded-[16px] bg-main" href="${pageContext.request.contextPath}?departement=<%=departementId%>&feliere=<%=feliere.getId()%>"><%=feliere.getLibelle()%></a>
+                </div>
+                <%
+                        }
+                    }
+                %>
+            </div>
+            <main class="cd-main-content">
+              <nav class="cd-side-nav js-cd-side-nav">
+                <ul class="cd-side__list js-cd-side__list">
+                  <li class="cd-side__label"><span>Main</span></li>
+                  <li class="cd-side__item cd-side__item--has-children cd-side__item--comments js-cd-item--has-children">
+                    <a href="#0">Comments</a>
+                    <ul class="cd-side__sub-list">
+                      <li class="cd-side__sub-item"><a href="#0">All Comments</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </main> <!-- .cd-main-content -->
+
+            <!--ul class="cd-side__list js-cd-side__list">
+              <li class="cd-side__label"><span>Action</span></li>
+              <li class="cd-side__btn"><button class="reset" href="#0">+ Button</button></li>
+            </!--ul>
+</ul>
+</body>
+</html>

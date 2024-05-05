@@ -43,18 +43,36 @@
     <nav class="cd-side-nav js-cd-side-nav">
       <ul class="cd-side__list js-cd-side__list">
         <li class="cd-side__label"><span>Main</span></li>
-      <ul class="cd-side__list js-cd-side__list">
-        <li class="cd-side__item cd-side__item--has-children cd-side__item--bookmarks js-cd-item--has-children">
-          <a href="#0">Bookmarks</a>
+        <ul class="cd-side__list js-cd-side__list">
+          <li class="cd-side__item cd-side__item--has-children cd-side__item--bookmarks js-cd-item--has-children">
+               <%
+                  String departementId = request.getParameter("departement");
+                  if(departementId != null){
+                      felieres = Connect.toFelieres(Connect.select("SELECT F.id, F.libelle, D.id as 'departementId', D.libelle as 'departement' FROM feliere F INNER JOIN departement D on D.id = F.departement WHERE F.departement = " + departementId));
+                      for (Feliere feliere: felieres) {
+              %>
+                    <a class="departement-item <%= (request.getParameter("departement") != null) && (request.getParameter("departement").equals(String.valueOf(departement.getId()))) ? "departement-active" : ""  %>">
+                      <a class="" href="${pageContext.request.contextPath}?departement=<%=departement.getId()%>"><%=departement.getLibelle()%></a>
+                    </a>
+              <% } %>  
           
-          <ul class="cd-side__sub-list">
-            <li class="cd-side__sub-item"><a href="#0">All Bookmarks</a></li>
-            <li class="cd-side__sub-item"><a href="#0">Edit Bookmark</a></li>
-            <li class="cd-side__sub-item"><a href="#0">Import Bookmark</a></li>
-          </ul>
-        </li>
-    
-      </ul>
+            <ul class="cd-side__sub-list">
+              <li class="cd-side__sub-item">
+                  <%
+                  String departementId = request.getParameter("departement");
+                  if(departementId != null){
+                      felieres = Connect.toFelieres(Connect.select("SELECT F.id, F.libelle, D.id as 'departementId', D.libelle as 'departement' FROM feliere F INNER JOIN departement D on D.id = F.departement WHERE F.departement = " + departementId));
+                      for (Feliere feliere: felieres) {
+                   %>
+                   <a class="feliere-item <%= (request.getParameter("feliere") != null) && (request.getParameter("feliere").equals(String.valueOf(feliere.getId()))) ? "feliere-active" : ""  %>">
+                      <a class="" href="${pageContext.request.contextPath}?departement=<%=departementId%>&feliere=<%=feliere.getId()%>"><%=feliere.getLibelle()%></a>
+                  </a>
+                <%
+                        }
+                    }
+                %>  
+            </ul>
+          </li>
       <ul class="cd-side__list js-cd-side__list">
         <li class="cd-side__label"><span>Action</span></li>
         <li class="cd-side__btn"><button class="reset" href="#0">+ Button</button></li>
@@ -73,3 +91,29 @@
   <script src="assets/js/main.js"></script>
 </body>
 </html>
+<!--
+      <header class="cd-main-header js-cd-main-header">
+        <div class="cd-logo-wrapper">
+            <a href="#0" class="cd-logo"><img src="assets/img/cd-logo.svg" alt="Logo"></a>
+        </div>
+              <button class="reset cd-nav-trigger js-cd-nav-trigger" aria-label="Toggle menu"><span></span></button>
+        <ul class="cd-nav__list js-cd-nav__list">
+            <li class="cd-nav__item"><a href="${pageContext.request.contextPath}/views/etudiants.jsp" class="navbar-link">Etudiant</a></li>
+            <li class="cd-nav__item"><a href="${pageContext.request.contextPath}/views/felieres.jsp" class="navbar-link">Felieres</a></li>
+            <li class="cd-nav__item"><a href="${pageContext.request.contextPath}/views/departements.jsp" class="navbar-link">Departements</a></li>
+
+            <li class="cd-nav__item cd-nav__item--has-children cd-nav__item--account js-cd-item--has-children">
+              <a href="#0">
+                <img src="assets/img/cd-avatar.svg" alt="avatar">
+                <span><a href="${pageContext.request.contextPath}/views/admin.jsp" class="navbar-link">Administration</a></span>
+              </a>
+          
+              <ul class="cd-nav__sub-list">
+                <li class="cd-nav__sub-item"><a style="min-width: fit-content" href="${pageContext.request.contextPath}/views/add-etudiant.jsp" class="button">Ajouter Etudiant</a></li>
+                <li class="cd-nav__sub-item"><a style="min-width: fit-content" href="${pageContext.request.contextPath}/views/add-departement.jsp" class="button">Ajouter Departement</a></li>
+                <li class="cd-nav__sub-item"><a style="min-width: fit-content" href="${pageContext.request.contextPath}/views/add-feliere.jsp" class="button">Ajouter Feliere</a></li>
+              </ul>
+            </li>
+        </ul>
+    </header>
+-->

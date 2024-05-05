@@ -11,6 +11,13 @@
           "min-width: fit-content"
         ]
       }
+    ],
+    "axe/structure": [
+      "default",
+      {
+        "list": "off",
+        "listitem": "off"
+      }
     ]
   }
 }

@@ -81,10 +81,11 @@ List<Etudiant> etudiants = null;
   </main-->
     <div class="header" style="gap: 10px">
         <div style="gap: 10px">
-            <a href="${pageContext.request.contextPath}/views/departements.jsp" class="navbar-link">departements</a>
-            <a href="${pageContext.request.contextPath}/views/felieres.jsp" class="navbar-link">felieres</a>
+            <a href="${pageContext.request.contextPath}/views/etudiants.jsp" class="navbar-link">Etudiant</a>
+            <a href="${pageContext.request.contextPath}/views/departements.jsp" class="navbar-link">Departements</a>
+            <a href="${pageContext.request.contextPath}/views/felieres.jsp" class="navbar-link">Felieres</a>
         </div>
-        <a href="${pageContext.request.contextPath}/views/admin.jsp" class="navbar-link">administration</a>
+        <a href="${pageContext.request.contextPath}/views/admin.jsp" class="navbar-link">Ddministration</a>
     </div>
     <div class="">
         <div class="content">

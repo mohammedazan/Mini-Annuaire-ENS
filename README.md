@@ -47,4 +47,9 @@ Pour exécuter l'application, suivez les étapes suivantes :
 - **/webapp**: Contient les fichiers JSP et HTML de l'application.
 - **annuaire_ens**: Fichier Deployment Descriptor de l'application.
 
-Pour plus d'informations sur les fonctionnalités spécifiques de l'application et les étapes de développement, veuillez consulter le fichier de spécifications du projet.
+## Captures d'écran de l'application
+
+![Exemple d'affichage de liste]('./src/main/webapp/assets/images/1.png')
+![Exemple d'entrée]('./src/main/webapp/assets/images/2.png')
+
+

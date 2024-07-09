@@ -49,7 +49,7 @@ Pour exécuter l'application, suivez les étapes suivantes :
 
 ## Captures d'écran de l'application
 
-![Exemple d'affichage de liste]('./src/main/webapp/assets/images/1.png')
-![Exemple d'entrée]('./src/main/webapp/assets/images/2.png')
+![Exemple d'affichage de liste](./src/main/webapp/assets/images/1.png)
+![Exemple d'entrée](./src/main/webapp/assets/images/2.png)
 
 

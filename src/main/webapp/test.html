@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	  <link rel="stylesheet" href="./assets/css/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -52,3 +55,164 @@
 </body>
 </html>
 
+
+
+
+//////////////////////////////////////////////////////////etudent
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.lpw.annuaire.modals.Etudiant" %>
+<%@ page import="com.lpw.annuaire.configs.Connect" %>
+<%@ page import="com.lpw.annuaire.modals.Feliere" %>
+<%@ page import="com.lpw.annuaire.modals.Departement" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.List" %>
+<%
+    if(!Connect.open()){
+        response.sendRedirect("error.jsp");
+    }
+    List<Departement> departements = null;
+    List<Feliere> felieres = null;
+    List<Etudiant> etudiants = null;
+
+    departements = Connect.toDepartements(Connect.select("SELECT * FROM departement"));
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sidebar 01</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+          <div class="p-4 pt-5">
+            <div style="background-color: aliceblue;"><img src="../assets/images/LOGO_ENS_MARTIL_(1).png"  class="img logo mb-5" width="100px" height="100px" ></div>
+                      
+            <!-- Original static structure for reference -->
+            <ul class="list-unstyled components mb-5">
+              <li class="active">
+                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">departement 1</a>
+                  <ul class="collapse list-unstyled" id="homeSubmenu">
+                      <li><a href="#">feliere 1</a></li>
+                      <li><a href="#">feliere 2</a></li>
+                      <li><a href="#">feliere ...</a></li>
+                  </ul>
+              </li>
+              <li>
+                  <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">departement 2</a>
+                  <ul class="collapse list-unstyled" id="pageSubmenu">
+                      <li><a href="#">feliere 1</a></li>
+                      <li><a href="#">feliere 2</a></li>
+                      <li><a href="#">feliere ...</a></li>
+                  </ul>
+              </li>
+          </ul>
+          <div class="footer">
+
+          </div>
+
+    </div>
+  </nav>
+
+    <!-- Page Content  -->
+  <div id="content" class="p-4 p-md-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="${pageContext.request.contextPath}/indexT.jsp" >Home</a>
+            </li>
+            <li class="nav-item">
+             <a class="nav-link" href="${pageContext.request.contextPath}/views/etudiants.jsp">Etudiant</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/views/departements.jsp">Departements</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/views/felieres.jsp">Felieres</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="${pageContext.request.contextPath}/views/admin.jsp">Administration</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <%
+      if (request.getAttribute("etudiants") != null) {
+        etudiants = (ArrayList<Etudiant>) request.getAttribute("etudiants");
+      } else {
+        etudiants = Connect.toEtudiants(Connect.select("SELECT e.CNE, e.nom, e.prenom, e.telephone, d.libelle AS Departement, f.libelle AS Feliere FROM etudiant e LEFT JOIN departement d ON e.departement = d.id LEFT JOIN feliere f ON e.feliere = f.id;"));
+      }
+      %>
+      
+      <div class="container">
+        <form action="${pageContext.request.contextPath}/recherche" method="POST">
+          <label for="search">Rechercher Un Etudiant</label>
+          <input id="search" name="search" type="text" />
+          <input class="recherche-btn" type="submit" value="rechercher">
+        </form>
+        
+        <h1 class="heading">List Des Etudiants4</h1>
+        <table>
+          <thead>
+          <th>CNE</th>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Telephone</th>
+          <th>Departement</th>
+          <th>Feliere</th>
+          <th colspan="2"></th>
+          </thead>
+          <tbody>
+          <%
+            for(Etudiant etudiant : etudiants){
+          %>
+          <tr>
+            <td><%=etudiant.getCNE()%></td>
+            <td><%=etudiant.getNom()%></td>
+            <td><%=etudiant.getPrenom()%></td>
+            <td><%=etudiant.getTelephone()%></td>
+            <td>
+              <a href="${pageContext.request.contextPath}/?departement=<%=etudiant.getDepartement().getId()%>&feliere=<%=etudiant.getFeliere().getId()%>">
+                <%=etudiant.getDepartement().getLibelle()%>
+              </a>
+            </td>
+            <td><%=etudiant.getFeliere().getLibelle()%></td>
+            <td>
+              <a class="link"  href="${pageContext.request.contextPath}/delete_etudiant?cne=<%=etudiant.getCNE()%>">
+                Suppremer
+              </a>
+            </td>
+          </tr>
+          <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/popper.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
